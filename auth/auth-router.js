@@ -13,7 +13,6 @@ router.post("/register", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await authModel.findBy({ username }).first();
-    console.log(user);
 
     if (user) {
       return res.status(409).json({ message: "Please pick a unique username" });
@@ -36,6 +35,7 @@ router.post("/login", async (req, res, next) => {
     const { username, password } = req.body;
     const user = await authModel.findBy({ username }).first();
 
+    // If username is not in the database
     if (!user) {
       return res.status(401).json({ message: "Username or password invalid" });
     }

@@ -9,11 +9,11 @@ module.exports = (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      return res.status(401).json({ you: "Missing tokens shall not pass!" });
+      return res.status(401).json({ message: "Shall not pass!" });
     }
     jwt.verify(token, JWT_SECRET, (err, decoded) => {
       if (err) {
-        return res.status(401).json({ you: "Bad tokens shall not pass!" });
+        return res.status(401).json({ message: "Shall not pass!" });
       }
 
       req.token = decoded;
